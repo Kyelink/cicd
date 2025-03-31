@@ -9,7 +9,7 @@ jobs:
       - run: whoami
       - uses: actions/checkout@v4
       - run: mkdir tempdir
-      - run: cat tempdir/hi.txt
+      - run: cat > tempdir/hi.txt
       - run: ls -a
  
       
