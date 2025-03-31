@@ -7,5 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "HelloW"
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Afficher WD
+        run: pwd
+      - run: echo "second step"
+      - run: ls -a
+      
       
     
