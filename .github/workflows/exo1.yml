@@ -9,18 +9,13 @@ jobs:
       - run: whoami
       - uses: actions/checkout@v4
       - run: mkdir tempdir
-      - run: cat > tempdir/hi.txt
+      - run: cat > tempdir/hi2.txt
       - run: ls -a -R
   job2:
     runs-on: ubuntu-latest
     steps:
-      - name: Afficher WD
-        run: pwd
-      - run: ls -a -R
       - uses: actions/checkout@v4
-      - run: cp hi.txt hi2.txt
-      - run: echo "second step"
-      - run: ls -a
+      - run: ls -a -R
       
       
     
