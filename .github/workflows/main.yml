@@ -1,0 +1,11 @@
+name: "first workflow"
+
+on: push
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "HelloW"
+      
+    
