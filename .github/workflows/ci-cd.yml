@@ -17,6 +17,7 @@ jobs:
           echo $VAR_FROM_WF
           echo $VAR_FROM_JOB
           echo $VAR_FROM_STEP
+          echo $GITHUB_REF
       # - uses: actions/checkout@v4
       # - uses: actions/setup-node@v4
       # - run: npm install
