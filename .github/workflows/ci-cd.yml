@@ -6,6 +6,7 @@ env:
   VAR_FROM_WF: "varr"
 jobs:
   Tests:
+    if: GITHUB_REF == 'refs/heads/main'
     env:
       VAR_FROM_JOB: "varrjob"
     runs-on: ubuntu-latest
