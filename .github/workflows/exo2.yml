@@ -1,0 +1,12 @@
+name: "workflow exo2"
+
+on: push
+
+jobs:
+  job1:
+    runs-on: node-latest
+    steps:
+      - run: npm init
+      
+      
+    
