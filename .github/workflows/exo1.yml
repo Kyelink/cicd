@@ -1,0 +1,17 @@
+name: "workflow exo1"
+
+on: push
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: whoami
+      - uses: actions/checkout@v4
+      - run: mkdir tempdir
+      - run: cat tempdir/hi.txt
+      - run: ls -a
+ 
+      
+      
+    
