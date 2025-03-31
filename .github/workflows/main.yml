@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Afficher WD
         run: pwd
+      - run: ls -a
       - uses: actions/checkout@v4
       - run: echo "second step"
       - run: ls -a
