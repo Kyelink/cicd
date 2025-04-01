@@ -46,7 +46,7 @@ jobs:
       - if: needs.Detective.outputs.autorisation == 'true'
         run: echo "enquête sans suite" | exit 1
         continue-on-error: true
-      - if: ${{!cancelled()}}
+      - if: ${{!failure()}}
         run: echo "enquête avec suite"
 # jobs:
 #   job1:
