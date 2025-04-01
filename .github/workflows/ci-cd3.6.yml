@@ -44,9 +44,8 @@ jobs:
     steps:
       - run: echo "conclusion = ${{ needs.Detective.outputs.conclusion  }}"
       - if: needs.Detective.outputs.autorisation == 'true'
-        run: echo "enquête sans suite" | exit 1
-        continue-on-error: true
-      - if: success()
+        run: echo "enquête sans suite"
+      - if: needs.Detective.outputs.autorisation != 'true'
         run: echo "enquête avec suite"
 # jobs:
 #   job1:
