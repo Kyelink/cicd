@@ -1,0 +1,40 @@
+name: "exo3 workflow"
+
+on: push
+
+env:
+  VAR_FROM_WF: "varr"
+jobs:
+  CopScene:
+    # if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+    # env:
+    #   VAR_FROM_JOB: "varrjob"
+    runs-on: ubuntu-latest
+    steps:
+      - name: vartest
+        # env:
+        #   VAR_FROM_STEP: "varrstep"
+        # run: |
+        #   echo $VAR_FROM_WF
+        #   echo $VAR_FROM_JOB
+        #   echo $VAR_FROM_STEP
+        #   echo $GITHUB_REF
+        run: echo "VAROUT=CopScene" >> $GITHUB_OUTPUT
+
+      # - uses: actions/checkout@v4
+      # - uses: actions/setup-node@v4
+      # - run: npm install
+      # - run: npm run test:ci
+  CopVideo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo CopVideo
+  Detective:
+    needs: [CopScene, CopVideo]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Det
+  SWAT:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo SWAT

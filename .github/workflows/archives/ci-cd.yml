@@ -19,7 +19,7 @@ jobs:
         #   echo $VAR_FROM_JOB
         #   echo $VAR_FROM_STEP
         #   echo $GITHUB_REF
-        run: echo The username is ${{ github.ref == 'refs/heads/main' && 'main' || 'dev' }}
+        run: echo The branch is ${{ github.ref == 'refs/heads/main' && 'main' || 'dev' }}
 
       # - uses: actions/checkout@v4
       # - uses: actions/setup-node@v4
