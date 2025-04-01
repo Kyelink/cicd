@@ -25,7 +25,7 @@ jobs:
     steps:
       - env:
           OUTPUT1: ${{needs.CopScene.outputs.output1}}
-        run: echo "$OUTPUT1"
+        run: echo "Output from job1 $OUTPUT1"
   SWAT:
     runs-on: ubuntu-latest
     steps:
