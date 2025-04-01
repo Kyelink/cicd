@@ -1,50 +1,52 @@
 name: "exo3 workflow"
 
 on: push
-env:
-  MY_VARIABLE: "value"
-jobs:
-  job1:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set Variable
-        run: echo "MY_VARIABLE=my_value" >> $GITHUB_ENV #this is workflow scoped
+# env:
+#   MY_VARIABLE: "value"
+# jobs:
+#   job1:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Set Variable
+#         run: echo "MY_VARIABLE=my_value" >> $GITHUB_ENV #this is workflow scoped
 
-  job2:
-    needs: job1
-    runs-on: ubuntu-latest
-    steps:
-      - name: Use Variable
-        run: echo "$GITHUB_ENV.MY_VARIABLE"
+#   job2:
+#     needs: job1
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Use Variable
+#         run: echo "$GITHUB_ENV.MY_VARIABLE"
 
 # env:
 #   VAR_FROM_WF: "varuntouched"
 
-# jobs:
-#   CopScene:
-#     runs-on: ubuntu-latest
-#     # outputs:
-#     #   output1: ${{ steps.testout.outputs.VAROUT }}
-#     steps:
-#       - id: testout
-#         run: echo "VAROUT=CopScene" >> $GITHUB_ENV
+jobs:
+  CopScene:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.testout.outputs.VAROUT }}
+      message: "testmessage"
+    steps:
+      - id: testout
+        run: echo "VAROUT=CopScene" >> $GITHUB_OUTPUT
       
 
-#   CopVideo:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo CopVideo
-#   Detective:
-#     needs: [CopScene, CopVideo]
-#     runs-on: ubuntu-latest
-#     steps:
-#       # - env:
-#       #     OUTPUT1: ${{needs.CopScene.outputs.output1}}
-#       -  run: echo "Output from job1 ${{ env.VAROUT }}"
-#   SWAT:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo SWAT
+  CopVideo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo CopVideo
+  Detective:
+    needs: [CopScene, CopVideo]
+    runs-on: ubuntu-latest
+    steps:
+      # - env:
+      #     OUTPUT1: ${{needs.CopScene.outputs.output1}}
+      # -  run: echo "Output from job1 ${{ env.VAROUT }}"
+      -  run: echo " statique from job1 ${{ needs.CopScene.outputs.message }}"
+  SWAT:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo SWAT
 
 
 # jobs:
