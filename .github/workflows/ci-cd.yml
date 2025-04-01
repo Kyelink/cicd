@@ -14,11 +14,13 @@ jobs:
       - name: vartest
         env:
           VAR_FROM_STEP: "varrstep"
-        run: |
-          echo $VAR_FROM_WF
-          echo $VAR_FROM_JOB
-          echo $VAR_FROM_STEP
-          echo $GITHUB_REF
+        # run: |
+        #   echo $VAR_FROM_WF
+        #   echo $VAR_FROM_JOB
+        #   echo $VAR_FROM_STEP
+        #   echo $GITHUB_REF
+        run: echo The username is ${{ VAR_FROM_STEP }}
+
       # - uses: actions/checkout@v4
       # - uses: actions/setup-node@v4
       # - run: npm install
