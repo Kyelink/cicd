@@ -3,48 +3,48 @@ name: "exo3 workflow"
 on: push
 
 jobs:
-  # CopScene:
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     output1: ${{ steps.testout.outputs.VAROUT }}
-  #     empreinte: "empreinte trouvée sur la caisse"
-  #   steps:
-  #     - run: echo "Le policier examine la caisse enregistreuse"
-  #     - run: echo "Empreinte prélevée sur la caisse"
+  CopScene:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.testout.outputs.VAROUT }}
+      empreinte: "empreinte trouvée sur la caisse"
+    steps:
+      - run: echo "Le policier examine la caisse enregistreuse"
+      - run: echo "Empreinte prélevée sur la caisse"
 
-  # CopVideo:
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     video: ${{ steps.testout.outputs.resultat }}
-  #   steps:
-  #     - id: testout
-  #       run: echo "resultat=Séquence vidéo 22h15-22h45 récupérée" >> $GITHUB_OUTPUT
-  # Detective:
-  #   needs: [CopScene, CopVideo]
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     conclusion: ${{ steps.conclusion.outputs.conclusion }}
-  #     lieu: "42 Avenue du Commerce, Supermarché SuperPrix"
-  #     autorisation: "false"
-  #   steps:
-  #     # - env:
-  #     #     OUTPUT1: ${{needs.CopScene.outputs.output1}}
-  #     # -  run: echo "Output from job1 ${{ env.VAROUT }}"
-  #     - run: echo " statique from scene ${{ needs.CopScene.outputs.empreinte  }}"
-  #     - run: echo " dynamique from video ${{ needs.CopVideo.outputs.video  }}"
-  #     - run: echo "ANALYSE_EMPREINTE=${{ needs.CopScene.outputs.empreinte  }}" >> $GITHUB_ENV
-  #     - run: echo "ANALYSE_VIDEO=${{ needs.CopVideo.outputs.video  }}" >> $GITHUB_ENV
-  #     - run: echo "ANALYSE_EMPREINTE $ANALYSE_EMPREINTE"
-  #     - run: echo "ANALYSE_VIDEO $ANALYSE_VIDEO"
-  #     - id: conclusion
-  #       run: echo "conclusion=$ANALYSE_EMPREINTE, $ANALYSE_VIDEO, suspect reperé:\ Michel Mitchell" >> "$GITHUB_OUTPUT"
+  CopVideo:
+    runs-on: ubuntu-latest
+    outputs:
+      video: ${{ steps.testout.outputs.resultat }}
+    steps:
+      - id: testout
+        run: echo "resultat=Séquence vidéo 22h15-22h45 récupérée" >> $GITHUB_OUTPUT
+  Detective:
+    needs: [CopScene, CopVideo]
+    runs-on: ubuntu-latest
+    outputs:
+      conclusion: ${{ steps.conclusion.outputs.conclusion }}
+      lieu: "42 Avenue du Commerce, Supermarché SuperPrix"
+      autorisation: "true"
+    steps:
+      # - env:
+      #     OUTPUT1: ${{needs.CopScene.outputs.output1}}
+      # -  run: echo "Output from job1 ${{ env.VAROUT }}"
+      - run: echo " statique from scene ${{ needs.CopScene.outputs.empreinte  }}"
+      - run: echo " dynamique from video ${{ needs.CopVideo.outputs.video  }}"
+      - run: echo "ANALYSE_EMPREINTE=${{ needs.CopScene.outputs.empreinte  }}" >> $GITHUB_ENV
+      - run: echo "ANALYSE_VIDEO=${{ needs.CopVideo.outputs.video  }}" >> $GITHUB_ENV
+      - run: echo "ANALYSE_EMPREINTE $ANALYSE_EMPREINTE"
+      - run: echo "ANALYSE_VIDEO $ANALYSE_VIDEO"
+      - id: conclusion
+        run: echo "conclusion=$ANALYSE_EMPREINTE, $ANALYSE_VIDEO, suspect reperé:\ Michel Mitchell" >> "$GITHUB_OUTPUT"
   SWAT:
-    # needs: Detective
+    needs: Detective
     runs-on: ubuntu-latest
     env:
       bool: "bu"
     steps:
-      # - run: echo "conclusion = ${{ needs.Detective.outputs.conclusion  }}"
+      - run: echo "conclusion = ${{ needs.Detective.outputs.conclusion  }}"
       # - if: needs.Detective.outputs.autorisation == 'true'
       #   run: echo "enquête sans suite" | exit 1
       #   # continue-on-error: true
@@ -52,7 +52,7 @@ jobs:
       #   run: echo "enquête avec suite"
       
       - run:  |
-          if [ ${{env.bool}} = "bu" ]
+          if [ ${{needs.Detective.outputs.autorisation}} = "true" ]
           then
             echo "enquête sans suite"
           else
