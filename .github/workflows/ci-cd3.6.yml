@@ -22,6 +22,10 @@ jobs:
   Detective:
     needs: [CopScene, CopVideo]
     runs-on: ubuntu-latest
+    outputs:
+      conclusion: ${{ steps.conclusion.outputs.conclusion }}
+      lieu: "42 Avenue du Commerce, Supermarché SuperPrix"
+      autorisation: "true"
     steps:
       # - env:
       #     OUTPUT1: ${{needs.CopScene.outputs.output1}}
@@ -32,10 +36,13 @@ jobs:
       - run: echo "ANALYSE_VIDEO=${{ needs.CopVideo.outputs.video  }}" >> $GITHUB_ENV
       - run: echo "ANALYSE_EMPREINTE $ANALYSE_EMPREINTE"
       - run: echo "ANALYSE_VIDEO $ANALYSE_VIDEO"
+      - id: conclusion
+        run: echo "conclusion=$ANALYSE_EMPREINTE, $ANALYSE_VIDEO, Michel Mitchell" >> "$GITHUB_OUTPUT"
   SWAT:
+    needs: Detective
     runs-on: ubuntu-latest
     steps:
-      - run: echo SWAT
+      - run: echo "conclusion = ${{ needs.Detective.outputs.conclusion  }}"
 # jobs:
 #   job1:
 #     runs-on: ubuntu-latest
