@@ -1,7 +1,8 @@
 name: "exo3 workflow"
 
 on: push
-
+env:
+  MY_VARIABLE: "value"
 jobs:
   job1:
     runs-on: ubuntu-latest
