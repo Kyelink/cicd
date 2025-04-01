@@ -52,7 +52,7 @@ jobs:
       #   run: echo "enquête avec suite"
       
       - run:  |
-          if [ ${{env.bool}} == "bu" ]
+          if [ ${{env.bool}} == bu ]
           then
             echo "enquête sans suite"
           else
