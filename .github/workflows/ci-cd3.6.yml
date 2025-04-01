@@ -23,9 +23,9 @@ jobs:
     needs: [CopScene, CopVideo]
     runs-on: ubuntu-latest
     steps:
-      - env:
-          OUTPUT1: ${{needs.CopScene.outputs.output1}}
-        run: echo "Output from job1 ${{ env.VAROUT }}"
+      # - env:
+      #     OUTPUT1: ${{needs.CopScene.outputs.output1}}
+      -  run: echo "Output from job1 ${{ env.VAROUT }}"
   SWAT:
     runs-on: ubuntu-latest
     steps:
