@@ -37,7 +37,7 @@ jobs:
       - run: echo "ANALYSE_EMPREINTE $ANALYSE_EMPREINTE"
       - run: echo "ANALYSE_VIDEO $ANALYSE_VIDEO"
       - id: conclusion
-        run: echo "conclusion=$ANALYSE_EMPREINTE, $ANALYSE_VIDEO, Michel Mitchell" >> "$GITHUB_OUTPUT"
+        run: echo "conclusion=$ANALYSE_EMPREINTE, $ANALYSE_VIDEO, suspect reperé:\ Michel Mitchell" >> "$GITHUB_OUTPUT"
   SWAT:
     needs: Detective
     runs-on: ubuntu-latest
