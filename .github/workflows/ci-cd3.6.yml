@@ -8,11 +8,11 @@ env:
 jobs:
   CopScene:
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.testout.outputs.VAROUT }}
+    # outputs:
+    #   output1: ${{ steps.testout.outputs.VAROUT }}
     steps:
       - id: testout
-        run: echo "VAROUT=CopScene" >> $GITHUB_OUTPUT
+        run: echo "VAROUT=CopScene" >> $GITHUB_ENV
       
 
   CopVideo:
@@ -25,7 +25,7 @@ jobs:
     steps:
       - env:
           OUTPUT1: ${{needs.CopScene.outputs.output1}}
-        run: echo "Output from job1 $OUTPUT1"
+        run: echo "Output from job1 ${{ env.VAROUT }}"
   SWAT:
     runs-on: ubuntu-latest
     steps:
