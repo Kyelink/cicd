@@ -33,7 +33,7 @@ jobs:
     needs: [CopScene, CopVideo]
     runs-on: ubuntu-latest
     steps:
-      - run: echo "$VAROUT"
+      - run: echo "$GITHUB_REF"
   SWAT:
     runs-on: ubuntu-latest
     steps:
