@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Use Variable
-        run: echo "${{ env.MY_VARIABLE }}"
+        run: echo "$GITHUB_ENV.MY_VARIABLE"
 
 # env:
 #   VAR_FROM_WF: "varuntouched"
