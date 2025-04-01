@@ -43,8 +43,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "conclusion = ${{ needs.Detective.outputs.conclusion  }}"
-      - run: echo "bool = ${{ needs.Detective.outputs.conclusion == 'true'  }}"
-      - if: needs.Detective.outputs.conclusion == 'true'
+      - run: echo "bool = ${{ needs.Detective.outputs.autorisation == 'true'  }}"
+      - if: needs.Detective.outputs.autorisation == 'true'
         run: echo "enquête sans suite"
 # jobs:
 #   job1:
