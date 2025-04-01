@@ -1,42 +1,21 @@
 name: "exo3 workflow"
 
 on: push
-# env:
-#   MY_VARIABLE: "value"
-# jobs:
-#   job1:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Set Variable
-#         run: echo "MY_VARIABLE=my_value" >> $GITHUB_ENV #this is workflow scoped
-
-#   job2:
-#     needs: job1
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Use Variable
-#         run: echo "$GITHUB_ENV.MY_VARIABLE"
-
-# env:
-#   VAR_FROM_WF: "varuntouched"
 
 jobs:
   CopScene:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.testout.outputs.VAROUT }}
-      empreinte : "empreinte trouvée sur la caisse"
+      empreinte: "empreinte trouvée sur la caisse"
     steps:
-      - id: testout
-        run: echo "VAROUT=CopScene" >> $GITHUB_OUTPUT
       - run: echo "Le policier examine la caisse enregistreuse"
       - run: echo "Empreinte prélevée sur la caisse"
-      
 
   CopVideo:
     runs-on: ubuntu-latest
     outputs:
-      resultat: ${{ steps.testout.outputs.resultat }}
+      video: ${{ steps.testout.outputs.resultat }}
     steps:
       - id: testout
         run: echo "resultat=Séquence vidéo 22h15-22h45 récupérée" >> $GITHUB_OUTPUT
@@ -47,14 +26,14 @@ jobs:
       # - env:
       #     OUTPUT1: ${{needs.CopScene.outputs.output1}}
       # -  run: echo "Output from job1 ${{ env.VAROUT }}"
-      -  run: echo " statique from scene ${{ needs.CopScene.outputs.empreinte  }}"
-      -  run: echo " dynamique from video ${{ needs.CopVideo.outputs.resultat  }}"
+      - run: echo " statique from scene ${{ needs.CopScene.outputs.empreinte  }}"
+      - run: echo " dynamique from video ${{ needs.CopVideo.outputs.video  }}"
+      - run: echo "VAROUT=CopScene" >> $GITHUB_ENV
+      - run: echo " statique from env $VAROUT"
   SWAT:
     runs-on: ubuntu-latest
     steps:
       - run: echo SWAT
-
-
 # jobs:
 #   job1:
 #     runs-on: ubuntu-latest
