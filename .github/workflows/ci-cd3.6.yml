@@ -49,10 +49,10 @@ jobs:
       # - if: ${{!failure()}}
       #   run: echo "enquête avec suite"
       - run:  |
-          if [[true]]; then
-            echo test
+          if [[ needs.Detective.outputs.autorisation == 'true' ]]; then
+            echo "enquête sans suite"
           else
-            echo testelse
+            echo "enquête avec suite"
           fi
 # jobs:
 #   job1:
