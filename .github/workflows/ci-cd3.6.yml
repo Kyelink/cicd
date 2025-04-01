@@ -43,11 +43,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "conclusion = ${{ needs.Detective.outputs.conclusion  }}"
-      - if: needs.Detective.outputs.autorisation == 'true'
-        run: echo "enquête sans suite" | exit 1
-        # continue-on-error: true
-      - if: ${{!failure()}}
-        run: echo "enquête avec suite"
+      # - if: needs.Detective.outputs.autorisation == 'true'
+      #   run: echo "enquête sans suite" | exit 1
+      #   # continue-on-error: true
+      # - if: ${{!failure()}}
+      #   run: echo "enquête avec suite"
+      - run:  |
+          if [[true]]; then
+            echo test
+          else
+            echo testelse
+          fi
 # jobs:
 #   job1:
 #     runs-on: ubuntu-latest
