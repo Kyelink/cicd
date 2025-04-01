@@ -28,8 +28,10 @@ jobs:
       # -  run: echo "Output from job1 ${{ env.VAROUT }}"
       - run: echo " statique from scene ${{ needs.CopScene.outputs.empreinte  }}"
       - run: echo " dynamique from video ${{ needs.CopVideo.outputs.video  }}"
-      - run: echo "VAROUT=CopScene" >> $GITHUB_ENV
-      - run: echo " statique from env $VAROUT"
+      - run: echo "ANALYSE_EMPREINTE=${{ needs.CopScene.outputs.empreinte  }}" >> $GITHUB_ENV
+      - run: echo "ANALYSE_VIDEO=${{ needs.CopVideo.outputs.video  }}" >> $GITHUB_ENV
+      - run: echo "ANALYSE_EMPREINTE $ANALYSE_EMPREINTE"
+      - run: echo "ANALYSE_VIDEO $ANALYSE_VIDEO"
   SWAT:
     runs-on: ubuntu-latest
     steps:
