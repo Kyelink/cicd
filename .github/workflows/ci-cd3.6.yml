@@ -2,20 +2,18 @@ name: "exo3 workflow"
 
 on: push
 
-# env:
-#   VAR_FROM_WF: "varr"
+env:
+  VAR_FROM_WF: "varuntouched"
 
 jobs:
   CopScene:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.testout.outputs.VAROUT }}
-      # output1: ${{ steps.step1.outputs.test }}
     steps:
       - id: testout
-        run: echo "VAROUT=CopScene" >> $GITHUB_OUTPUT
-      # - id: step1
-      #   run: echo "test=hello" >> "$GITHUB_OUTPUT"
+        run: echo "VAROUT=CopScene" >> $GITHUB_ENV
+      
 
   CopVideo:
     runs-on: ubuntu-latest
@@ -28,10 +26,10 @@ jobs:
       - env:
           OUTPUT1: ${{needs.CopScene.outputs.output1}}
         run: echo "$OUTPUT1"
-#   SWAT:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo SWAT
+  SWAT:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo SWAT
 
 
 # jobs:
