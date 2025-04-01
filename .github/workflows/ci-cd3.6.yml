@@ -25,10 +25,12 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.testout.outputs.VAROUT }}
-      message: "testmessage"
+      empreinte : "empreinte trouvée sur la caisse"
     steps:
       - id: testout
         run: echo "VAROUT=CopScene" >> $GITHUB_OUTPUT
+      - run: echo "Le policier examine la caisse enregistreuse"
+      - run: echo "Empreinte prélevée sur la caisse"
       
 
   CopVideo:
@@ -42,7 +44,7 @@ jobs:
       # - env:
       #     OUTPUT1: ${{needs.CopScene.outputs.output1}}
       # -  run: echo "Output from job1 ${{ env.VAROUT }}"
-      -  run: echo " statique from job1 ${{ needs.CopScene.outputs.message }}"
+      -  run: echo " statique from job1 ${{ needs.CopScene.outputs.empreinte  }}"
   SWAT:
     runs-on: ubuntu-latest
     steps:
