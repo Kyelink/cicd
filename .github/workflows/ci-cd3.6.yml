@@ -6,18 +6,15 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - id: step1
-        run: echo "MY_VAR=hello" >> $GITHUB_ENV
-      - name: Save environment variables
-        run: echo "MY_VAR=hello" > my_env_vars.txt
-        continue-on-error: true
+      - name: Set Variable
+        run: echo "MY_VARIABLE=my_value" >> $GITHUB_ENV #this is workflow scoped
+
   job2:
-    runs-on: ubuntu-latest
     needs: job1
+    runs-on: ubuntu-latest
     steps:
-      - name: Load environment variables
-        run: source my_env_vars.txt
-      - run: echo "MY_VAR is $MY_VAR"
+      - name: Use Variable
+        run: echo "${{ env.MY_VARIABLE }}"
 
 # env:
 #   VAR_FROM_WF: "varuntouched"
