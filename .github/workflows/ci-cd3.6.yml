@@ -10,8 +10,10 @@ jobs:
     # env:
     #   VAR_FROM_JOB: "varrjob"
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.testout.outputs.test }}
     steps:
-      - name: vartest
+      - id: testout
         # env:
         #   VAR_FROM_STEP: "varrstep"
         # run: |
@@ -33,7 +35,7 @@ jobs:
     needs: [CopScene, CopVideo]
     runs-on: ubuntu-latest
     steps:
-      - run: echo $VAR_FROM_WF
+      - run: echo ${{needs.CopScene.outputs.output1}}
   SWAT:
     runs-on: ubuntu-latest
     steps:
