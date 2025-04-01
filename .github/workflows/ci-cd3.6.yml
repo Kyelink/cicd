@@ -49,7 +49,7 @@ jobs:
       # - if: ${{!failure()}}
       #   run: echo "enquête avec suite"
       - run:  |
-          if [[ needs.Detective.outputs.autorisation != 'true' ]]; then
+          if [[ ${{needs.Detective.outputs.autorisation != 'true'}} ]]; then
             echo "enquête sans suite"
           else
             echo "enquête avec suite"
