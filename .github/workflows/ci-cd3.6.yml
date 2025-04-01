@@ -43,6 +43,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "conclusion = ${{ needs.Detective.outputs.conclusion  }}"
+      - if: true
+        run: echo "enquête sans suite"
 # jobs:
 #   job1:
 #     runs-on: ubuntu-latest
