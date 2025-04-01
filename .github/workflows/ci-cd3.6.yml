@@ -42,7 +42,7 @@ jobs:
     # needs: Detective
     runs-on: ubuntu-latest
     env:
-      bool: "false"
+      bool: "bu"
     steps:
       # - run: echo "conclusion = ${{ needs.Detective.outputs.conclusion  }}"
       # - if: needs.Detective.outputs.autorisation == 'true'
@@ -52,7 +52,7 @@ jobs:
       #   run: echo "enquête avec suite"
       
       - run:  |
-          if [ ${{env.bool}} == false ]
+          if [ ${{env.bool}} == "bu" ]
           then
             echo "enquête sans suite"
           else
