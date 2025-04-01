@@ -12,7 +12,7 @@ jobs:
       output1: ${{ steps.testout.outputs.VAROUT }}
     steps:
       - id: testout
-        run: echo "VAROUT=CopScene" >> $GITHUB_ENV
+        run: echo "VAROUT=CopScene" >> $GITHUB_OUTPUT
       
 
   CopVideo:
