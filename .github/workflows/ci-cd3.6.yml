@@ -46,7 +46,8 @@ jobs:
       - if: needs.Detective.outputs.autorisation == 'true'
         run: echo "enquête sans suite" | exit 1
         continue-on-error: true
-      - run: echo "enquête avec suite"
+      - if: success()
+        run: echo "enquête avec suite"
 # jobs:
 #   job1:
 #     runs-on: ubuntu-latest
