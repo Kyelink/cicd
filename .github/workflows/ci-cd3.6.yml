@@ -35,8 +35,11 @@ jobs:
 
   CopVideo:
     runs-on: ubuntu-latest
+    outputs:
+      resultat: ${{ steps.testout.outputs.resultat }}
     steps:
-      - run: echo CopVideo
+      - id: testout
+        run: echo "resultat=Séquence vidéo 22h15-22h45 récupérée" >> $GITHUB_OUTPUT
   Detective:
     needs: [CopScene, CopVideo]
     runs-on: ubuntu-latest
@@ -44,7 +47,8 @@ jobs:
       # - env:
       #     OUTPUT1: ${{needs.CopScene.outputs.output1}}
       # -  run: echo "Output from job1 ${{ env.VAROUT }}"
-      -  run: echo " statique from job1 ${{ needs.CopScene.outputs.empreinte  }}"
+      -  run: echo " statique from scene ${{ needs.CopScene.outputs.empreinte  }}"
+      -  run: echo " dynamique from video ${{ needs.CopVideo.outputs.resultat  }}"
   SWAT:
     runs-on: ubuntu-latest
     steps:
