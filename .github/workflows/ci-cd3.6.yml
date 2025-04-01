@@ -25,7 +25,7 @@ jobs:
     outputs:
       conclusion: ${{ steps.conclusion.outputs.conclusion }}
       lieu: "42 Avenue du Commerce, Supermarché SuperPrix"
-      autorisation: "true"
+      autorisation: "false"
     steps:
       # - env:
       #     OUTPUT1: ${{needs.CopScene.outputs.output1}}
