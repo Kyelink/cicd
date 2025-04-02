@@ -27,10 +27,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        pizzas: ${{ fromJSON(needs.reception-commande.outputs.pizzas) }}
-    
+        pizza: ${{ fromJSON(needs.reception-commande.outputs.pizzas) }}
+        taille : ["L", "XL"]
+        include:
+          - pizza: "dessert"
+            taille: "S"
     steps:
-      - run: echo "Cooking, ${{ matrix.pizzas }}"
+      - run: echo "Cooking, ${{ matrix.pizza }}, taille ${{ matrix.taille }}"
   livraison:
     needs: cuisine
     runs-on: ubuntu-latest
