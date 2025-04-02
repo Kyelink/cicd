@@ -17,10 +17,11 @@ jobs:
 
   reception-commande:
     runs-on: ubuntu-latest
-    
+    outputs:
+      pizzas: "${{ github.event.inputs.pizzas }}"
     steps:
       - run: echo "Bienvenue ${{ github.event.inputs.nom_client }}"
-
+      - run: echo "Commande reçue, ${{ github.event.inputs.pizzas }}"
   cuisine:
     needs: reception-commande
     runs-on: ubuntu-latest
