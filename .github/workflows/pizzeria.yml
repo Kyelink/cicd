@@ -1,0 +1,18 @@
+name: "exo4 workflow"
+
+on:
+  workflow_dispatch:
+    inputs:
+      nombre_personnes:
+        description: "Nombre de personnes pour la commande"
+        required: true
+
+jobs:
+  CopScene:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - run: echo "Le policier examine la caisse enregistreuse"
+      - run: echo "Empreinte prélevée sur la caisse"
+
+ 
