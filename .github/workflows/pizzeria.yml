@@ -6,7 +6,7 @@ on:
       nom_client:
         description: "Saisissez nom du client"
         required: true
-      pizza:
+      pizzas:
         description: |
           Liste des pizzas au format JSON. Attention aux points importants:
             - Utilisez des guillemets doubles
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - run: echo "Commande reçue, ${{ github.event.inputs.pizzas }}"
+      - run: echo "Commande reçue, ${{ steps.creception-commande.outputs.pizzas }}"
   livraison:
     needs: cuisine
     runs-on: ubuntu-latest
