@@ -25,9 +25,12 @@ jobs:
   cuisine:
     needs: reception-commande
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pizzas: ${{ fromJSON(needs.reception-commande.outputs.pizzas) }}
     
     steps:
-      - run: echo "Commande reçue, ${{ needs.reception-commande.outputs.pizzas }}"
+      - run: echo "Cooking, ${{ matrix.pizzas }}"
   livraison:
     needs: cuisine
     runs-on: ubuntu-latest
