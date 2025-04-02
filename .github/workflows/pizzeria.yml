@@ -19,7 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - run: echo "Le policier examine la caisse enregistreuse
+      - run: echo "Bienvenue ${{ github.event.inputs.nom_client }}"
+      
   cuisine:
     needs: reception-commande
     runs-on: ubuntu-latest
