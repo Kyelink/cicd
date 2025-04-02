@@ -37,9 +37,13 @@ jobs:
   livraison:
     needs: cuisine
     runs-on: ubuntu-latest
-    
+
+    concurrency:
+      group: livreur
+      cancel-in-progress: true
+
     steps:
-      - run: echo "Le policier examine la caisse enregistreuse"
+      - run: echo "Livraison"
   reclamation:
     needs: livraison
     runs-on: ubuntu-latest
