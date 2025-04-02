@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - run: echo "Commande reçue, ${{ steps.creception-commande.outputs.pizzas }}"
+      - run: echo "Commande reçue, ${{ steps.reception-commande.outputs.pizzas }}"
   livraison:
     needs: cuisine
     runs-on: ubuntu-latest
