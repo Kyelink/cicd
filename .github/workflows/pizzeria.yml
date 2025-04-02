@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - run: echo "Le policier examine la caisse enregistreuse"
+      - run: echo "Commande reçue, ${{ github.event.inputs.pizzas }}"
   livraison:
     needs: cuisine
     runs-on: ubuntu-latest
